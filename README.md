@@ -42,11 +42,17 @@ aws-appsync-codegen introspect-schema schema.graphql --output schema.json
 
 The purpose of this command is to generate types for query and mutation operations made against the schema (it will not generate types for the schema itself).
 
+#### Swift
+
 This tool will generate Swift code by default from a set of query definitions in `.graphql` files:
 
 ```sh
 aws-appsync-codegen generate **/*.graphql --schema schema.json --output API.swift
 ```
+
+The `--add-s3-wrapper` option can be specified to add in S3 wrapper code to the generated source.
+
+#### TypeScript, Flow, or Scala
 
 You can also generate type annotations for TypeScript, Flow, or Scala using the `--target` option:
 
