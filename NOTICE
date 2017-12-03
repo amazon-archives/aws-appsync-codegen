@@ -1,2 +1,13 @@
-AWS Mobile Events Codegen for iOS
-Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved. 
+AWS AppSync Codegen for iOS
+
+This product includes software developed by Amazon Technologies, Inc (http://www.amazon.com/).
+
+Licensed under the MIT License.
+
+See the License for the specific language governing permissions and limitations under the License.
+
+=========================================================================
+==                   Apollo GraphQL code generator                     ==
+=========================================================================
+
+This product includes the Apollo GraphQL code generator library licensed under the MIT license.
