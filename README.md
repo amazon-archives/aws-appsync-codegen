@@ -2,13 +2,93 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg?maxAge=2592000)](https://raw.githubusercontent.com/apollographql/apollo-ios/master/LICENSE) [![npm](https://img.shields.io/npm/v/apollo-codegen.svg)](https://www.npmjs.com/package/apollo-codegen) [![Get on Slack](https://img.shields.io/badge/slack-join-orange.svg)](http://www.apollostack.com/#slack)
 
-This is a tool to generate API code or type annotations based on a GraphQL schema and query documents.
+This is a tool to generate API code or type annotations based on a GraphQL schema and query documents. This project is based upon [Apollo GraphQL code generator](https://github.com/apollographql/apollo-codegen).
 
-It currently generates Swift code, TypeScript annotations, Flow annotations, and Scala code, we hope to add support for other targets in the future.
+It currently generates Swift code, TypeScript annotations, Flow annotations, and Scala code.
 
-See [Apollo iOS](https://github.com/apollographql/apollo-ios) for details on the mapping from GraphQL results to Swift types, as well as runtime support for executing queries and mutations. For Scala, see [React Apollo Scala.js](https://github.com/apollographql/react-apollo-scalajs) for details on how to use generated Scala code in a Scala.js app with Apollo Client.
+See [Apollo iOS](https://github.com/apollographql/apollo-ios) for details on the mapping from GraphQL results to Swift types, as well as runtime support for executing queries and mutations.
 
-## Usage
+## Usage with AWS AppSync
+
+A complete tutorial can be found in the [AWS AppSync documentation](https://docs.aws.amazon.com/appsync/latest/devguide/building-a-client-app-ios.html) which is recommended for you to review first.
+
+### Create GraphQL API
+
+If you have never created an AWS AppSync API before please use the [Quickstart Guide](https://docs.aws.amazon.com/appsync/latest/devguide/quickstart.html) and then walk through the [iOS client guide](https://docs.aws.amazon.com/appsync/latest/devguide/building-a-client-app-ios.html).
+
+### Download introspection schema
+
+The code generaton process needs two things:  
+1. GraphQL introspection schema
+1. GraphQL queries/mutations/subscriptions
+
+You can get the introspection schema in a `schema.json` file from the AWS AppSync console. ou can find this in the console by clicking on your API name in the left-hand navigation, scrolling to the bottom, selecting **iOS**, clicking the **Export schema** dropdown, and selecting `schema.json`.
+
+### Write GraphQL queries
+
+Now you can write GraphQL queries and the codegen process will convert these to native Swift types. If you are unfamiliar with writing a GraphQL query please [read through this guide](https://docs.aws.amazon.com/appsync/latest/devguide/quickstart-write-queries.html). Once you have your queries written, save them in a file called `queries.graphql`. For example you might have the following in your `queries.graphql` file:
+
+```
+query AllPosts {
+   allPosts {
+       id
+       title
+       author
+       content
+       url
+       version
+   }
+}
+```
+
+### Generate Swift types
+
+Now that you have your introspection schema and your GraphQL query, install `aws-appsync-codegen` and run the tool against these two files like so:
+
+```
+npm install -g aws-appsync-codegen
+
+aws-appsync-codegen generate queries.graphql --schema schema.json --output API.swift
+```
+
+The output will be a Swift class called `API.swift` which you can include in your XCode project to perform a GraphQL query against AWS AppSync. 
+
+### Invoke GraphQL operation from Swift
+
+Now that you have completed the code generation, import the `API.swift` file into your XCode project. Then update your project's `Podfile` with a dependency of the AWS AppSync SDK:
+
+```
+target 'PostsApp' do
+  use_frameworks!
+  pod 'AWSAppSync' ~> '2.6.7'
+end
+```
+
+Next, in any code you wish to run the GraphQL query against AWS AppSync, import the SDK:
+
+```
+import AWSAppSync
+```
+
+Finally, run your query:
+
+```
+        appSyncClient?.fetch(query: AllPostsQuery())  { (result, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            self.postList = result?.data?.allPosts
+        }
+```
+
+**Note:** The code generation process converted the GraphQL statement of `allPosts` in your `queries.graphql` file to `AllPostsQuery()` which allowed you to invoke this using `appSyncClient?.fetch()`. A similar process happens for mutations and subscriptions.
+
+### Automate code generation
+
+The process defined above outlines the general flow, however you can [automate this in your XCode build process](https://docs.aws.amazon.com/appsync/latest/devguide/building-a-client-app-ios.html#building-a-client-app-integrating-into-the-build-process).
+
+## General Usage
 
 If you want to experiment with the tool, you can install the `aws-appsync-codegen` command globally:
 
