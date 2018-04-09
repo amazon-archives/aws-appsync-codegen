@@ -10,7 +10,7 @@ See [Apollo iOS](https://github.com/apollographql/apollo-ios) for details on the
 
 ## Usage with AWS AppSync
 
-A complete tutorial can be found in the [AWS AppSync documentation](https://docs.aws.amazon.com/appsync/latest/devguide/building-a-client-app-ios.html) which is recommended for you to review first.
+A complete tutorial can be found in the [AWS AppSync documentation](https://awslabs.github.io/aws-mobile-appsync-sdk-ios/) which is recommended for you to review first.
 
 ### Create GraphQL API
 
