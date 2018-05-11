@@ -22,7 +22,7 @@ The code generaton process needs two things:
 1. GraphQL introspection schema
 1. GraphQL queries/mutations/subscriptions
 
-You can get the introspection schema in a `schema.json` file from the AWS AppSync console. ou can find this in the console by clicking on your API name in the left-hand navigation, scrolling to the bottom, selecting **iOS**, clicking the **Export schema** dropdown, and selecting `schema.json`.
+You can get the introspection schema in a `schema.json` file from the AWS AppSync console. You can find this in the console by clicking on your API name in the left-hand navigation, scrolling to the bottom, selecting **iOS**, clicking the **Export schema** dropdown, and selecting `schema.json`.
 
 ### Write GraphQL queries
 
