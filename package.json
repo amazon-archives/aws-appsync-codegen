@@ -60,6 +60,7 @@
     "jest-cli": "^21.2.1",
     "mkdirp": "^0.5.1",
     "node-fetch": "^1.7.2",
+    "npm": "^6.2.0",
     "rimraf": "^2.6.2",
     "source-map-support": "^0.4.15",
     "yargs": "^8.0.2"

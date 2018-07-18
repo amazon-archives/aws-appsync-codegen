@@ -24,6 +24,7 @@ import { CompilerOptions, SelectionSet, Field, FragmentSpread, Argument } from '
 import { isMetaFieldName } from '../utilities/graphql';
 import { Variant } from '../compiler/visitors/typeCase';
 import { collectAndMergeFields } from '../compiler/visitors/collectAndMergeFields';
+import { getTypeForAWSScalar } from './aws-scalar-helper';
 
 const builtInScalarMap = {
   [GraphQLString.name]: 'String',
@@ -62,7 +63,7 @@ export class Helpers {
       builtInScalarMap[type.name] ||
       (this.options.passthroughCustomScalars
         ? this.options.customScalarsPrefix + type.name
-        : GraphQLString.name)
+        : getTypeForAWSScalar(type) ? getTypeForAWSScalar(type): GraphQLString.name)
     );
   }
 
