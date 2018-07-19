@@ -48,7 +48,7 @@
     "@types/babel-generator": "^6.25.0",
     "@types/babylon": "^6.16.2",
     "@types/rimraf": "^2.0.2",
-    "babel-generator": "^6.26.0",
+    "babel-generator": "^6.26.1",
     "babylon": "^6.18.0",
     "change-case": "^3.0.1",
     "common-tags": "^1.4.0",
