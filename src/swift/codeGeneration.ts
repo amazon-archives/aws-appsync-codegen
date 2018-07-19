@@ -746,7 +746,7 @@ export class SwiftAPIGenerator extends SwiftGenerator<CompilerContext> {
 
     this.printNewlineIfNeeded();
     this.comment(description);
-    this.printOnNewline(`public enum ${name}: RawRepresentable, Equatable, JSONDecodable, JSONEncodable`);
+    this.printOnNewline(`public enum ${name}: RawRepresentable, Equatable, Apollo.JSONDecodable, Apollo.JSONEncodable`);
     this.withinBlock(() => {
       this.printOnNewline('public typealias RawValue = String')
 
