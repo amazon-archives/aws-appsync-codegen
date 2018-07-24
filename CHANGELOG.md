@@ -1,5 +1,11 @@
 # Change Log - AWS AppSync Codegen
 
+## [Release 0.17.5](https://github.com/awslabs/aws-appsync-codegen/releases/tag/0.17.5)
+
+### Enhancements
+
+* Fixes undeclared type errors when generating Swift enumerations, removed the Apollo module name as it doesn’t exist in this context. See [PR #14](https://github.com/awslabs/aws-appsync-codegen/pull/14)
+
 ## [Release 0.17.4](https://github.com/awslabs/aws-appsync-codegen/releases/tag/0.17.4)
 
 ### Enhancements
