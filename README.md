@@ -28,7 +28,7 @@ You can get the introspection schema in a `schema.json` file from the AWS AppSyn
 
 Now you can write GraphQL queries and the codegen process will convert these to native Swift types. If you are unfamiliar with writing a GraphQL query please [read through this guide](https://docs.aws.amazon.com/appsync/latest/devguide/quickstart-write-queries.html). Once you have your queries written, save them in a file called `queries.graphql`. For example you might have the following in your `queries.graphql` file:
 
-```
+```graphql
 query AllPosts {
    allPosts {
        id
@@ -45,7 +45,7 @@ query AllPosts {
 
 Now that you have your introspection schema and your GraphQL query, install `aws-appsync-codegen` and run the tool against these two files like so:
 
-```
+```graphql
 npm install -g aws-appsync-codegen
 
 aws-appsync-codegen generate queries.graphql --schema schema.json --output API.swift
@@ -72,14 +72,14 @@ import AWSAppSync
 
 Finally, run your query:
 
-```
-        appSyncClient?.fetch(query: AllPostsQuery())  { (result, error) in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-                return
-            }
-            self.postList = result?.data?.allPosts
-        }
+``` swift
+appSyncClient?.fetch(query: AllPostsQuery())  { (result, error) in
+     if error != nil {
+          print(error?.localizedDescription ?? "")
+          return
+     }
+     self.postList = result?.data?.allPosts
+}
 ```
 
 **Note:** The code generation process converted the GraphQL statement of `allPosts` in your `queries.graphql` file to `AllPostsQuery()` which allowed you to invoke this using `appSyncClient?.fetch()`. A similar process happens for mutations and subscriptions.
