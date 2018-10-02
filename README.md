@@ -1,3 +1,18 @@
+
+
+
+
+<span style="color:red">**Attention**</span>: Please use the [AWS Amplify CLI](https://github.com/aws-amplify/amplify-cli) going forward for code generation with AWS AppSync projects. The new CLI has all codegen features of this project and more, including automatic graphql document generation and a GraphQL transformer. You can read more in the [tutorial for native app development](https://github.com/aws-amplify/amplify-cli/blob/master/native_guide.md).
+
+-- AWS team (October 1st, 2018)
+
+
+
+
+
+
+
+
 # AWS Appsync GraphQL code generator
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg?maxAge=2592000)](https://raw.githubusercontent.com/apollographql/apollo-ios/master/LICENSE) [![npm](https://img.shields.io/npm/v/aws-appsync-codegen.svg)](https://www.npmjs.com/package/apollo-codegen) [![Get on Slack](https://img.shields.io/badge/slack-join-orange.svg)](http://www.apollostack.com/#slack)
